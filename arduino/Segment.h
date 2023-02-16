@@ -5,7 +5,7 @@ class Segment{
         Segment(int length, int [3] rotation ,int [3] bottomPositon, int [3] topPosition, rMin,rMax, stepsPerRevolution=200, maxSpeed, int [4] pins){
             Stepper myStepper(stepsPerRevolution, pins[0], pins[1], pins[2], pins[3]);
             this->length = length;
-            this->rotation = rotation;
+            this->rotation = rotation; // rotation axis (defines which axis is able to rotate but only relative to the previeous segment)
             this->bottomPositon = bottomPositon;
             this->topPosition = topPosition;
             this->rMin = rMin;
@@ -60,6 +60,15 @@ class Segment{
         }
         int getMaxSpeed(){
             return this->maxSpeed;
+        }
+
+        void calculatePosition(int [3] bottomPosition,int [3] topPosition, int [3] rotation){
+            //calculating the true rotation axis based on the rotation of the previous segment
+            this->bottomPosition = bottomPosition;
+            int [3] absRotation = rotation[0]
+         ;
+        }
+
         }
 
         
