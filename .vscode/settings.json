@@ -1,0 +1,4 @@
+{
+    "idf.adapterTargetName": "custom",
+    "idf.customAdapterTargetName": "arudino"
+}
