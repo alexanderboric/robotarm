@@ -9,4 +9,7 @@ The host device will have a web server which allows sending Commands to the robo
 The robot will have the following funcions: 
 - move to a specefied position while facing a specified direction => Command = move x,y,z,xDir,yDir,zDir
 - ad a deadzone the roboter will not enter while moving from one position to another (to reduce the risk of spilling the precious MULTIVITAMINSAFT) => not yet implemented
-- specifing transition types f.e. ease-in, ease-out, interpolate, 
+- specifing transition types f.e. ease, ease-in, ease-out, interpolate, 
+- (face tracking)
+- reading Gcode input
+
