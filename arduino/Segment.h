@@ -65,8 +65,9 @@ class Segment{
         void calculatePosition(int [3] bottomPosition,int [3] topPosition, int [3] rotation){
             //calculating the true rotation axis based on the rotation of the previous segment
             this->bottomPosition = bottomPosition;
-            int [3] absRotation = rotation[0]
-         ;
+
+            int [3] absRotation = rotation[0],;
+            
         }
 
         }
