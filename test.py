@@ -17,8 +17,8 @@ class segment ():
         self.rtrange = [rMin, rMax]
         self.currentangle = 0
         self.rotationspeed = 1  # rotation speed in degrees per second
-        self.start_point = [0, 0, 0]
-        self.end_point = [0, 0, 0]
+        self.start_point = np.array([0, 0, 0,0,0])
+        self.end_point = np.array([0, 0, 0,0,0])
         self.pointing_direction = pointing_direction
 
 
@@ -40,11 +40,6 @@ segments = [
 ]
 
 # all joints of the robot arm 
-joints= []
-for i in range(len(segments)):
-    # adding the start and end point of each segment to the joints list
-    joints.append(segments[i].start_point)
-    joints.append(segments[i].end_point) 
 
 # reading the current angle of the segment from json file and setting it to the current angle
 data = json.load(open("log.json"))
@@ -184,12 +179,23 @@ def main():
         pygame.draw.line(surf, (20, 20, 20), (int(origin_points[0][3]), int(
             origin_points[0][4])), (int(origin_points[3][3]), int(origin_points[3][4])), 2)
         
+        
+        for i in range(len(segments)):
+            if i!=0:
+                segments[i].start_point = segments[i-1].end_point
+                segments[i].end_point=np.array([segments[i].start_point[0]+segments[i].length*segments[i].pointing_direction[0],
+                                       segments[i].start_point[1]+segments[i].length*segments[i].pointing_direction[1],
+                                       segments[i].start_point[2]+segments[i].length*segments[i].pointing_direction[2]]) 
+        joints = []
+        for i in range(len(segments)):
+            joints.append([segments[i].start_point[0],segments[i].start_point[1],segments[i].start_point[2],1,1])
+            joints.append([segments[i].end_point[0],segments[i].end_point[1],segments[i].end_point[2],1,1])
         project_points(joints,camera)
-        for i in joints:
+        for i in range(len(joints)):
             if (i%2)==0:
-                pygame.draw.circle(surf, (255, 0, 0), (int(i[3]), int(i[4])), 5)
+                pygame.draw.circle(surf, (255, 0, 0), (int(joints[i][3]), int(joints[i][4])), 5)
             else:
-                pygame.draw.circle(surf, (0, 0, 255), (int(i[3]), int(i[4])), 5)
+                pygame.draw.circle(surf, (0, 0, 255), (int(joints[i][3]), int(joints[i][4])), 5)
 
         # drawing the triangles
         for index in np.argsort(z_order):
