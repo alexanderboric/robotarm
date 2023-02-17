@@ -8,7 +8,7 @@ attachment_length=0 #no attachment
 # new class segment 
 class segment ():
 
-    def __init__(self, name, length, rotation, rMin,rMax):
+    def __init__(self, name, length, rotation, rMin,rMax,pointing_direction=[0,0,1]):
         self.name=name
         self.length=length
         self.rotation=rotation
@@ -17,7 +17,7 @@ class segment ():
         self.rotationspeed=1 # rotation speed in degrees per second
         self.start_point=[0,0,0]
         self.end_point=[0,0,0]
-        self.pointing_direction=[0,0,0]
+        self.pointing_direction=pointing_direction
 
 class arm ():
     def __init__(self, segments):
