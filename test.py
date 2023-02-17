@@ -34,15 +34,15 @@ segments=[
     segment("F", 10+attachment_length, (0,1,0), 0,360), #rotatin along the y axis endpiece
 ]
 
+#reading the current angle of the segment from json file and setting it to the current angle
 data = json.load(open("log.json"))
-
 for i in range(len(segments)):
     print(segments[i].name) 
     #reading the current angle of the segment from json file and setting it to the current angle
     try:
         segments[i].currentangle= json.load(open("log.json"))[segments[i].name]
     except:
-        segments[i].currentangle=0
+        segments[i].currentangle=180
         #reading all data from json an saving it to the variable data
         
         data[segments[i].name]=segments[i].currentangle
@@ -54,7 +54,7 @@ for i in range(len(segments)):
 with open('log.json', 'w') as outfile:
     json.dump(data, outfile)
 
-
+# @Todo: calculate the current position of the endpiece and the direction of the endpiece^
 def calc_positions(segments):
     #calculating the current position of the endpiece
     
@@ -114,6 +114,16 @@ def main():
     surf = pygame.surface.Surface((SCREEN_W, SCREEN_H))
 
     points = np.asarray([[1, 1, 1, 1, 1], [4, 2, 0, 1, 1], [1, .5, 3, 1, 1]])
+
+    # giving points to define the origin as well as the x, y and z axis
+    origin_scale=5
+    origin =np.array([0,0,0,1,1])
+    x_axis =np.array([origin_scale,0,0,1,1])
+    y_axis =np.array([0,origin_scale,0,1,1])
+    z_axis =np.array([0,0,origin_scale,1,1])
+    origin_points=[origin,x_axis,y_axis,z_axis]
+    
+
     triangles = np.asarray([[0,1,2]])
     #points, triangles =  read_obj('obj models/teapot.obj')
     color_scale = 230/np.max(np.abs(points))
@@ -137,6 +147,16 @@ def main():
         # projecting the points sorting the triangles by z order and calculating the shade
         project_points(points, camera)
         sort_triangles(points, triangles, camera, light_dir, z_order, shade) 
+
+        project_points(origin_points, camera)  
+
+        #drawing the origin points  
+        for i in origin_points:
+            pygame.draw.circle(surf, (0,0,255), (int(i[3]), int(i[4])), 5)
+        #drawing the orgin as wellas the main axis
+        pygame.draw.line(surf, (20,20,20), (int(origin_points[0][3]), int(origin_points[0][4])), (int(origin_points[1][3]), int(origin_points[1][4])), 2)
+        pygame.draw.line(surf, (20,20,20), (int(origin_points[0][3]), int(origin_points[0][4])), (int(origin_points[2][3]), int(origin_points[2][4])), 2)
+        pygame.draw.line(surf, (20,20,20), (int(origin_points[0][3]), int(origin_points[0][4])), (int(origin_points[3][3]), int(origin_points[3][4])), 2)
         
         #drawing the triangles
         for index in np.argsort(z_order):
