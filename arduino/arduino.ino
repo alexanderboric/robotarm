@@ -1,8 +1,10 @@
 #include <Stepper.h>;
 #include <AccelStepper.h>;
 
+//max speed 345 bei 960 steps per revolution 
+
 String command;
-int stepsPerRevolution = 960;  // change this to fit the number of steps per revolution
+int stepsPerRevolution = 1000;  // change this to fit the number of steps per revolution
 // for your motor
 
 // initialize the stepper library on pins 8 through 11:
