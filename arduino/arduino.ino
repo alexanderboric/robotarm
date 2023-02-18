@@ -72,12 +72,12 @@ void loop() {
   if(is_testing){
     Serial.println("testing");
     //step one revolution in one direction:
-    Serial.println("clockwise");
+    //Serial.println("clockwise");
     myStepper.step(stepsPerRevolution);
     delay(500);
 
     // step one revolution in the other direction:
-    Serial.println("counterclockwise");
+    //Serial.println("counterclockwise");
     myStepper.step(-stepsPerRevolution);
     delay(500);
   }
