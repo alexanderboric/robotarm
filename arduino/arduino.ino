@@ -95,6 +95,6 @@ void loop() {
 
   
 void move_angle(Stepper s, int angle){
-  s.step(int(float(stepsPerRevolution/360)*angle));
+  s.step(int(float(stepsPerRevolution)/float(360))*float(angle));
 }
 
