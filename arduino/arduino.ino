@@ -14,18 +14,16 @@ void setup() {
   Serial.println("Type Command ");
 }
 
-bool serial_connectet=false;
+
 
 void loop() {
 
   if (Serial.available() > 0) {
-    serial_connectet=true;
     delay(1000);
     Serial.println("Serial connected at : " + String(millis()) + "ms");
-  }
-  if (serial_connectet){ {
 
     command = Serial.readStringUntil('\n');
+    
     command.trim();
     // Serial.println(command);
     Serial.println(command.indexOf("move"));
@@ -40,6 +38,8 @@ void loop() {
     }
     Serial.print("Command: ");
     Serial.println(command);
+    Serial.flush();
+    
   }
   delay(500);
 
