@@ -20,6 +20,7 @@ void loop() {
 
   if (Serial.available() > 0) {
     serial_connectet=true;
+    delay(1000);
     Serial.println("Serial connected at : " + String(millis()) + "ms");
   }
   if (serial_connectet){ {
@@ -28,7 +29,7 @@ void loop() {
     command.trim();
     // Serial.println(command);
     Serial.println(command.indexOf("move"));
-    if (command.indexOf("move") > 0) {
+    if (command.indexOf("move") >= 0) {
       Serial.print("du wolltest was bewegen");
       String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
       Serial.println(myString);
