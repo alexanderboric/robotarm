@@ -50,14 +50,15 @@ void loop() {
     else if (command.indexOf("set speed") >= 0) {
       is_testing=false;
       Serial.print("test stoped");
-      String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
+      String myString = command.substring(command.lastIndexOf(" "), command.length());//"move 1,2,3,4,5,6";
+      myStepper.setSpeed(myString.toInt());
       Serial.println(myString);
 
     }
     else if (command.indexOf("set stepsPerRevelution") >= 0) {
       is_testing=false;
-      Serial.print("test stoped");
-      String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
+      Serial.println("test stoped");
+      String myString = command.substring(command.lastIndexOf(" "), command.length());//"move 1,2,3,4,5,6";
       Serial.println(myString);
 
     }
