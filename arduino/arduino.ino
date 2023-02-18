@@ -95,7 +95,8 @@ void loop() {
 
   
 void move_angle(Stepper s, int angle){
-  s.step(int(float(float(stepsPerRevolution)/float(360)))*float(angle));
-  Serial.print("moved "+str$(int(float(float(stepsPerRevolution)/float(360))*float(angle))) +" steps");
+  s.step(int(float(float(stepsPerRevolution)/float(360))*float(angle)));
+  Serial.print("moved ");
+  Serial.println(int(float(float(stepsPerRevolution)/float(360))*float(angle)));
 }
 
