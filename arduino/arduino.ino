@@ -7,7 +7,7 @@ int stepsPerRevolution = 800;  // change this to fit the number of steps per rev
 
 // initialize the stepper library on pins 8 through 11:
 Stepper myStepper(stepsPerRevolution, 2,3,4,5);
-AccelStepper myAccStepper( uint8_t pin1=2, uint8_t pin2=3, uint8_t pin3=4, uint8_t pin4=5, bool enable=true);
+AccelStepper myAccStepper= new AccelStepper( uint8_t pin1=2, uint8_t pin2=3, uint8_t pin3=4, uint8_t pin4=5, bool enable=true);
 myAccStepper.setMaxSpeed(80.0);
 myAccStepper.setSpeed(70.0);
 
