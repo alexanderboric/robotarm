@@ -76,13 +76,13 @@ void loop() {
     //Serial.println("testing");
     //step one revolution in one direction:
     //Serial.println("clockwise");
-    move_angle(myStepper, 90);
+    move_angle(myStepper, 360);
     //myAccStepper.move(stepsPerRevolution);
     delay(500);
 
     // step one revolution in the other direction:
     //Serial.println("counterclockwise");
-    move_angle(myStepper, -90);
+    move_angle(myStepper, 360);
     //myAccStepper.move(-stepsPerRevolution);
     delay(500);
   }
@@ -93,6 +93,6 @@ void loop() {
 
   
 void move_angle(Stepper s, int angle){
-  s.step(800/360*angle);
+  s.step((800/360)*angle);
 }
 
