@@ -14,8 +14,15 @@ void setup() {
   Serial.println("Type Command ");
 }
 
+bool serial_connectet=false;
+
 void loop() {
-  if (Serial.available()) {
+  if (Serial.available() > 0) {
+    serial_connectet=true;
+    Serial.println("Serial connected at : " + String(millis()) + "ms");
+  }
+  if (serial_connectet){ {
+
     command = Serial.readStringUntil('\n');
     command.trim();
     // Serial.println(command);
@@ -32,6 +39,7 @@ void loop() {
     Serial.print("Command: ");
     Serial.println(command);
   }
+  delay(500);
 
   // step one revolution in one direction:
   // Serial.println("clockwise");
