@@ -13,3 +13,5 @@ The robot will have the following funcions:
 - (face tracking)
 - reading Gcode input
 
+The python server is going to do all the calculation an pass down how far every motor should rotate and in which time period (optionally also the transition mode (lineare, ease-in, ease-out, ease-in-out, 
+Circles or keyframes for animations can also be given, since a straigth line is the shortest but not neccessarily the best movement
