@@ -52,8 +52,8 @@ void loop() {
   // myStepper.step(-stepsPerRevolution);
   // delay(500);
 
+  }
 }
-
   
 
 
