@@ -1,4 +1,4 @@
-include <Stepper.h>;
+#include <Stepper.h>;
 
 String command;
 const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
@@ -10,9 +10,7 @@ Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
 void setup() {
   Serial.begin(9600);
   
-  myStepper.setSpeed(60);
-
-
+  myStepper.setSpeed(10);
   Serial.println("Type Command ");
 }
 
@@ -20,18 +18,14 @@ void loop() {
   if (Serial.available()) {
     command = Serial.readStringUntil('\n');
     command.trim();
+    // Serial.println(command);
+    Serial.println(command.indexOf("move"));
     if (command.indexOf("move") > 0) {
-      String myString= getValue(command,"move",1);
-      String posX = getValue(myString, ',', 0);
-      String posY = getValue(myString, ',', 1);
-      String posZ = getValue(myString, ',', 2);
-
-      String rotX = getValue(myString, ',', 3);
-      String rotY = getValue(myString, ',', 4);
-      String rotZ = getValue(myString, ',', 5);
-
-    }
       Serial.print("du wolltest was bewegen");
+      String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
+      Serial.println(myString);
+
+    }  
     else {
       Serial.println("bad command");
     }
