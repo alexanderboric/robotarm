@@ -5,7 +5,7 @@ const int stepsPerRevolution = 400;  // change this to fit the number of steps p
 // for your motor
 
 // initialize the stepper library on pins 8 through 11:
-Stepper myStepper(stepsPerRevolution, 2,5);
+Stepper myStepper(stepsPerRevolution, 2,3,4,5);
 
 void setup() {
   Serial.begin(9600);
@@ -41,6 +41,20 @@ void loop() {
 
     }
     else if (command.indexOf("stop") >= 0) {
+      is_testing=false;
+      Serial.print("test stoped");
+      String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
+      Serial.println(myString);
+
+    }
+    else if (command.indexOf("set speed") >= 0) {
+      is_testing=false;
+      Serial.print("test stoped");
+      String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
+      Serial.println(myString);
+
+    }
+    else if (command.indexOf("set stepsPerRevelution") >= 0) {
       is_testing=false;
       Serial.print("test stoped");
       String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
