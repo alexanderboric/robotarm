@@ -17,6 +17,7 @@ void setup() {
 bool serial_connectet=false;
 
 void loop() {
+
   if (Serial.available() > 0) {
     serial_connectet=true;
     Serial.println("Serial connected at : " + String(millis()) + "ms");
@@ -32,7 +33,7 @@ void loop() {
       String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
       Serial.println(myString);
 
-    }  
+    }
     else {
       Serial.println("bad command");
     }
@@ -50,4 +51,9 @@ void loop() {
   // Serial.println("counterclockwise");
   // myStepper.step(-stepsPerRevolution);
   // delay(500);
+
 }
+
+  
+
+
