@@ -100,3 +100,4 @@ void move_angle(Stepper s, int angle){
   //Serial.println(int(float(float(stepsPerRevolution)/float(360))*float(angle)));
 }
 
+// Ramp for interpolation
