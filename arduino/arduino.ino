@@ -1,4 +1,5 @@
 #include <Stepper.h>;
+#include <AccelStepper.h>;
 
 String command;
 int stepsPerRevolution = 400;  // change this to fit the number of steps per revolution
@@ -6,6 +7,8 @@ int stepsPerRevolution = 400;  // change this to fit the number of steps per rev
 
 // initialize the stepper library on pins 8 through 11:
 Stepper myStepper(stepsPerRevolution, 2,3,4,5);
+AccelStepper myAccStepper( uint8_t pin1=2, uint8_t pin2=3, uint8_t pin3=4, uint8_t pin4=5, bool enable=true)
+myAccStepper.setMaxSpeed(80.0);
 
 void setup() {
   Serial.begin(9600);
@@ -20,10 +23,8 @@ void loop() {
 
   if (Serial.available() > 0) {
     delay(1000);
-    Serial.println("Serial connected at : " + String(millis()) + "ms");
-
+    //Serial.println("Serial connected at : " + String(millis()) + "ms");
     command = Serial.readStringUntil('\n');
-    
     command.trim();
     // Serial.println(command);
     Serial.println(command.indexOf("move"));
@@ -50,6 +51,7 @@ void loop() {
     else if (command.indexOf("set speed") >= 0) {
       String myString = command.substring(command.lastIndexOf(" "), command.length());//"move 1,2,3,4,5,6";
       myStepper.setSpeed(myString.toInt());
+      myAccStepper.setSpeed(myString.toInt());
       Serial.println("speed set to "+ myString);
 
     }
@@ -73,12 +75,14 @@ void loop() {
     Serial.println("testing");
     //step one revolution in one direction:
     //Serial.println("clockwise");
-    myStepper.step(stepsPerRevolution);
+    //myStepper.step(stepsPerRevolution);
+    myAccStepper.move(stepsPerRevolution);
     delay(500);
 
     // step one revolution in the other direction:
     //Serial.println("counterclockwise");
-    myStepper.step(-stepsPerRevolution);
+    //myStepper.step(-stepsPerRevolution);
+    myAccStepper.move(-stepsPerRevolution);
     delay(500);
   }
   
