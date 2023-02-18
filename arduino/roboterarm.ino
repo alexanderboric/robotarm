@@ -34,12 +34,12 @@ void loop() {
   }
 
   // step one revolution in one direction:
-  Serial.println("clockwise");
-  myStepper.step(stepsPerRevolution);
-  delay(500);
+  // Serial.println("clockwise");
+  // myStepper.step(stepsPerRevolution);
+  // delay(500);
 
-  // step one revolution in the other direction:
-  Serial.println("counterclockwise");
-  myStepper.step(-stepsPerRevolution);
-  delay(500);
+  // // step one revolution in the other direction:
+  // Serial.println("counterclockwise");
+  // myStepper.step(-stepsPerRevolution);
+  // delay(500);
 }
