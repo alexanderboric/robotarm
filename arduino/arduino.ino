@@ -9,6 +9,7 @@ int stepsPerRevolution = 800;  // change this to fit the number of steps per rev
 Stepper myStepper(stepsPerRevolution, 2,3,4,5);
 AccelStepper myAccStepper( uint8_t pin1=2, uint8_t pin2=3, uint8_t pin3=4, uint8_t pin4=5, bool enable=true)
 myAccStepper.setMaxSpeed(80.0);
+myAccStepper.setSpeed(70.0);
 
 void setup() {
   Serial.begin(9600);
@@ -36,6 +37,7 @@ void loop() {
     }
     else if (command.indexOf("test") >= 0) {
       is_testing=true;
+      myAccStepper.run();
       Serial.print("starting test");
       String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
       Serial.println(myString);
@@ -43,6 +45,7 @@ void loop() {
     }
     else if (command.indexOf("stop") >= 0) {
       is_testing=false;
+      myAccStepper.stop();
       Serial.println("test stoped");
       String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
       Serial.println(myString);
@@ -72,18 +75,18 @@ void loop() {
   delay(500);
 
   if(is_testing){
-    Serial.println("testing");
+    //Serial.println("testing");
     //step one revolution in one direction:
     //Serial.println("clockwise");
     //myStepper.step(stepsPerRevolution);
-    myAccStepper.move(stepsPerRevolution);
-    delay(500);
+    //myAccStepper.move(stepsPerRevolution);
+    //delay(500);
 
     // step one revolution in the other direction:
     //Serial.println("counterclockwise");
     //myStepper.step(-stepsPerRevolution);
-    myAccStepper.move(-stepsPerRevolution);
-    delay(500);
+    //myAccStepper.move(-stepsPerRevolution);
+    //delay(500);
   }
   
 
