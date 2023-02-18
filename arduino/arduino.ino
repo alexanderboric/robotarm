@@ -4,7 +4,7 @@
 //max speed 345 bei 960 steps per revolution 
 
 String command;
-int stepsPerRevolution = 1200;  // change this to fit the number of steps per revolution
+int stepsPerRevolution = 800;  // change this to fit the number of steps per revolution
 // for your motor
 
 // initialize the stepper library on pins 8 through 11:
@@ -95,6 +95,7 @@ void loop() {
 
   
 void move_angle(Stepper s, int angle){
-  s.step(int(float(stepsPerRevolution)/float(360))*float(angle));
+  s.step(int(float(float(stepsPerRevolution)/float(360)))*float(angle));
+  Serial.print("moved "+int(float(float(stepsPerRevolution)/float(360)))*float(angle)+" steps");
 }
 
