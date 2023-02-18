@@ -4,7 +4,7 @@
 //max speed 345 bei 960 steps per revolution 
 
 String command;
-int stepsPerRevolution = 1080;  // change this to fit the number of steps per revolution
+int stepsPerRevolution = 1200;  // change this to fit the number of steps per revolution
 // for your motor
 
 // initialize the stepper library on pins 8 through 11:
