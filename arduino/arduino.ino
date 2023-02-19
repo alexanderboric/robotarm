@@ -8,17 +8,23 @@ int stepsPerRevolution = 800;  // change this to fit the number of steps per rev
 // for your motor
 
 // initialize the stepper library on pins 8 through 11:
-Stepper myStepper(stepsPerRevolution, 2,3,4,5);
-AccelStepper xStepper(8,2,3,4,5,true);
+Stepper stepperX(stepsPerRevolution, 2,3,4,5);
+//AccelStepper xStepper(8,2,3,4,5,true);
+Stepper stepperY(stepsPerRevolution, 6,7,8,9);
+Stepper stepperZ(stepsPerRevolution, 10,11,12,13);
+Stepper stepperA(stepsPerRevolution, 14,15,16,17);
 
 //AccelStepper myAccStepper(1, 2, 3, 4, 5);
 
 void setup() {
-  xStepper.setMaxSpeed(300);
-  xStepper.setSpeed(100);
-  xStepper.setAcceleration(100);
+  // xStepper.setMaxSpeed(300);
+  // xStepper.setSpeed(100);
+  // xStepper.setAcceleration(100);
   Serial.begin(9600);
-  myStepper.setSpeed(100);
+  stepperX.setSpeed(100);
+  stepperY.setSpeed(100);
+  stepperZ.setSpeed(100);
+  stepperA.setSpeed(100);
   Serial.println("Type Command ");
 }
 
@@ -81,13 +87,15 @@ void loop() {
     //Serial.println("testing");
     //step one revolution in one direction:
     //Serial.println("clockwise");
-    move_angle(myStepper, 360);
+    //move_angle(stepperX, 360);
+    move_all_angle(360);
     //xStepper.move(stepsPerRevolution);
     delay(500);
 
     // step one revolution in the other direction:
     //Serial.println("counterclockwise");
-    move_angle(myStepper, -360);
+    //move_angle(stepperX, -360);
+    move_all_angle(-360);
     //xStepper.move(-stepsPerRevolution);
     delay(500);
   }
@@ -101,6 +109,13 @@ void move_angle(Stepper s, int angle){
   s.step(int(float(float(stepsPerRevolution)/float(360))*float(angle)));
   //Serial.print("moved ");
   //Serial.println(int(float(float(stepsPerRevolution)/float(360))*float(angle)));
+}
+
+void move_all_angle(int angle){
+  move_angle(stepperX, angle);
+  move_angle(stepperY, angle);
+  move_angle(stepperZ, angle);
+  move_angle(stepperA, angle);
 }
 
 // Ramp for interpolation
