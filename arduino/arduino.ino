@@ -40,8 +40,7 @@ void loop() {
 
     }
     else if (command.indexOf("test") >= 0) {
-      //is_testing=true;
-      xStepper.run();
+      is_testing=true;
       Serial.print("starting test");
       String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
       Serial.println(myString);
@@ -82,14 +81,14 @@ void loop() {
     //Serial.println("testing");
     //step one revolution in one direction:
     //Serial.println("clockwise");
-    move_angle(myStepper, 360);
-    //myAccStepper.move(stepsPerRevolution);
+    //move_angle(myStepper, 360);
+    xStepper.move(stepsPerRevolution);
     delay(500);
 
     // step one revolution in the other direction:
     //Serial.println("counterclockwise");
-    move_angle(myStepper, 360);
-    //myAccStepper.move(-stepsPerRevolution);
+    //move_angle(myStepper, 360);
+    xStepper.move(-stepsPerRevolution);
     delay(500);
   }
   
