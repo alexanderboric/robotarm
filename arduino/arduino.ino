@@ -48,7 +48,7 @@ void loop() {
     }
     else if (command.indexOf("stop") >= 0) {
       is_testing=false;
-      xStepper.stop();
+      //xStepper.stop();
       Serial.println("test stoped");
       String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
       Serial.println(myString);
@@ -56,8 +56,8 @@ void loop() {
     }
     else if (command.indexOf("set speed") >= 0) {
       String myString = command.substring(command.lastIndexOf(" "), command.length());//"move 1,2,3,4,5,6";
-      //myStepper.setSpeed(myString.toInt());
-      xStepper.setSpeed(myString.toInt());
+      myStepper.setSpeed(myString.toInt());
+      //xStepper.setSpeed(myString.toInt());
       Serial.println("speed set to "+ myString);
 
     }
@@ -81,14 +81,14 @@ void loop() {
     //Serial.println("testing");
     //step one revolution in one direction:
     //Serial.println("clockwise");
-    //move_angle(myStepper, 360);
-    xStepper.move(stepsPerRevolution);
+    move_angle(myStepper, 360);
+    //xStepper.move(stepsPerRevolution);
     delay(500);
 
     // step one revolution in the other direction:
     //Serial.println("counterclockwise");
-    //move_angle(myStepper, 360);
-    xStepper.move(-stepsPerRevolution);
+    move_angle(myStepper, 360);
+    //xStepper.move(-stepsPerRevolution);
     delay(500);
   }
   
