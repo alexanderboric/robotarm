@@ -1,127 +1,40 @@
-// defines pins numbers
+#include <AccelStepper.h>
+const unsigned int NUM_STEPS = 4;
 
-const int stepX = 2;
+unsigned int xArray[NUM_STEPS] = {0, 50, 100, 150};
+unsigned int xSpeeds[NUM_STEPS] = {200, 200, 200, 200};
 
-const int dirX  = 5;
+const byte enablePin = 8;
 
-
-
-const int stepY = 3;
-
-const int dirY  = 6;
-
-
-
-const int stepZ = 4;
-
-const int dirZ  = 7;
-
-
-
-const int enPin = 8;
-
-
-
-void setup() {
-
-
-
-  // Sets the two pins as Outputs
-
-  pinMode(stepX,OUTPUT);
-
-  pinMode(dirX,OUTPUT);
-
-
-
-  pinMode(stepY,OUTPUT);
-
-  pinMode(dirY,OUTPUT);
-
-
-
-   pinMode(stepZ,OUTPUT);
-
-  pinMode(dirZ,OUTPUT);
-
-
-
-  pinMode(enPin,OUTPUT);
-
-  digitalWrite(enPin,LOW);
-
-
-
-  digitalWrite(dirX,HIGH);
-
-  digitalWrite(dirY,LOW);
-
-  digitalWrite(dirZ,HIGH);
-
-
-
+AccelStepper x_stepper(AccelStepper::DRIVER, 2, 5);
+static unsigned int index = 0;
+void setup()
+{
+Serial.begin(115200);
+pinMode(enablePin, OUTPUT);
+digitalWrite(enablePin, LOW);
+x_stepper.setAcceleration(2000);
+x_stepper.setMaxSpeed(200);
+x_stepper.setSpeed(200);
+x_stepper.setCurrentPosition(0);
 }
 
-void loop() {
+void loop()
+{
 
-
-
-  // Enables the motor to move in a particular direction
-
-  // Makes 200 pulses for making one full cycle rotation
-
-  for(int x = 0; x < 800; x++) {
-
-    digitalWrite(stepX,HIGH);
-
-    delayMicroseconds(1000);
-
-    digitalWrite(stepX,LOW);
-
-    delayMicroseconds(1000);
-
-  }
-
-  delay(1000); // One second delay
-
-
-
-
-
-   for(int x = 0; x < 800; x++) {
-
-    digitalWrite(stepY,HIGH);
-
-    delayMicroseconds(1000);
-
-    digitalWrite(stepY,LOW);
-
-    delayMicroseconds(1000);
-
-  }
-
-
-
-   delay(1000); // One second delay
-
-
-
-  for(int x = 0; x < 800; x++) {
-
-    digitalWrite(stepZ,HIGH);
-
-    delayMicroseconds(1000);
-
-    digitalWrite(stepZ,LOW);
-
-    delayMicroseconds(1000);
-
-  }
-
-
-
-   delay(1000); // One second delay
-
-
-
+if (x_stepper.run() == 0)
+{
+delay(250);
+Serial.println(index);
+x_stepper.moveTo(xArray[index]);
+x_stepper.setMaxSpeed(xSpeeds[index]);
+index++;
+if (index >= NUM_STEPS)
+{
+index = 0;
+x_stepper.setCurrentPosition(0);
+delay(80);
 }
+}
+}
+
