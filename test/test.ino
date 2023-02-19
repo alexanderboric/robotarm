@@ -13,9 +13,9 @@ void setup()
 Serial.begin(115200);
 pinMode(enablePin, OUTPUT);
 digitalWrite(enablePin, LOW);
-x_stepper.setAcceleration(2000);
-x_stepper.setMaxSpeed(200);
-x_stepper.setSpeed(200);
+x_stepper.setAcceleration(200);
+x_stepper.setMaxSpeed(100);
+x_stepper.setSpeed(100);
 x_stepper.setCurrentPosition(0);
 }
 
