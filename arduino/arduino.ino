@@ -9,7 +9,7 @@ int stepsPerRevolution = 800;  // change this to fit the number of steps per rev
 
 // initialize the stepper library on pins 8 through 11:
 
-Stepper stepperX(stepsPerRevolution, 2,5);
+Stepper stepperX(stepsPerRevolution, 3,6);
 Stepper stepperY(stepsPerRevolution, 3,6);
 Stepper stepperZ(stepsPerRevolution, 4,7);
 Stepper stepperA(stepsPerRevolution, 12,13);
