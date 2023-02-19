@@ -9,10 +9,13 @@ int stepsPerRevolution = 800;  // change this to fit the number of steps per rev
 
 // initialize the stepper library on pins 8 through 11:
 Stepper myStepper(stepsPerRevolution, 2,3,4,5);
+AccelStepper xStepper(1,2,3,4,5,true);
 
 //AccelStepper myAccStepper(1, 2, 3, 4, 5);
 
 void setup() {
+  xStepper.setMaxSpeed(100);
+  xStepper.setSpeed(100);
   Serial.begin(9600);
   myStepper.setSpeed(100);
   Serial.println("Type Command ");
@@ -36,8 +39,8 @@ void loop() {
 
     }
     else if (command.indexOf("test") >= 0) {
-      is_testing=true;
-      //myAccStepper.run();
+      //is_testing=true;
+      xStepper.run();
       Serial.print("starting test");
       String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
       Serial.println(myString);
@@ -45,7 +48,7 @@ void loop() {
     }
     else if (command.indexOf("stop") >= 0) {
       is_testing=false;
-      //myAccStepper.stop();
+      xStepper.stop();
       Serial.println("test stoped");
       String myString = command.substring(command.indexOf(" "), command.length());//"move 1,2,3,4,5,6";
       Serial.println(myString);
@@ -53,8 +56,8 @@ void loop() {
     }
     else if (command.indexOf("set speed") >= 0) {
       String myString = command.substring(command.lastIndexOf(" "), command.length());//"move 1,2,3,4,5,6";
-      myStepper.setSpeed(myString.toInt());
-      //myAccStepper.setSpeed(myString.toInt());
+      //myStepper.setSpeed(myString.toInt());
+      xStepper.setSpeed(myString.toInt());
       Serial.println("speed set to "+ myString);
 
     }

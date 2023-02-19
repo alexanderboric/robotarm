@@ -19,6 +19,8 @@
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino",
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/variants/standard",
                 "/Applications/Arduino.app/Contents/Java/libraries/Stepper/src",
+                "/Users/alexanderboric/Documents/Arduino/libraries",
+                "/Users/alexanderboric/Documents/Arduino/libraries/AccelStepper/src",
                 "/Applications/Arduino.app/Contents/Java/hardware/tools/avr/lib/gcc/avr/7.3.0/include",
                 "/Applications/Arduino.app/Contents/Java/hardware/tools/avr/lib/gcc/avr/7.3.0/include-fixed",
                 "/Applications/Arduino.app/Contents/Java/hardware/tools/avr/avr/include"
