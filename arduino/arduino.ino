@@ -87,7 +87,7 @@ void loop() {
 
     // step one revolution in the other direction:
     //Serial.println("counterclockwise");
-    move_angle(myStepper, 360);
+    move_angle(myStepper, -360);
     //xStepper.move(-stepsPerRevolution);
     delay(500);
   }
