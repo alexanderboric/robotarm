@@ -14,8 +14,9 @@ AccelStepper xStepper(1,2,3,4,5,true);
 //AccelStepper myAccStepper(1, 2, 3, 4, 5);
 
 void setup() {
-  xStepper.setMaxSpeed(100);
+  xStepper.setMaxSpeed(300);
   xStepper.setSpeed(100);
+  xStepper.setAcceleration(100);
   Serial.begin(9600);
   myStepper.setSpeed(100);
   Serial.println("Type Command ");
