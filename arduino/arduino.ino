@@ -62,7 +62,7 @@ void loop() {
     }
     else if (command.indexOf("set speed") >= 0) {
       String myString = command.substring(command.lastIndexOf(" "), command.length());//"move 1,2,3,4,5,6";
-      myStepper.setSpeed(myString.toInt());
+      //myStepper.setSpeed(myString.toInt());
       //xStepper.setSpeed(myString.toInt());
       Serial.println("speed set to "+ myString);
 
