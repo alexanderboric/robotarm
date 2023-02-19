@@ -8,11 +8,11 @@ int stepsPerRevolution = 800;  // change this to fit the number of steps per rev
 // for your motor
 
 // initialize the stepper library on pins 8 through 11:
-Stepper stepperX(stepsPerRevolution, 2,3,4,5);
+Stepper stepperX(stepsPerRevolution, 2,5);
 //AccelStepper xStepper(8,2,3,4,5,true);
-Stepper stepperY(stepsPerRevolution, 6,7,8,9);
-Stepper stepperZ(stepsPerRevolution, 10,11,12,13);
-Stepper stepperA(stepsPerRevolution, 14,15,16,17);
+Stepper stepperY(stepsPerRevolution, 3,6);
+Stepper stepperZ(stepsPerRevolution, 4,7);
+Stepper stepperA(stepsPerRevolution, 12,13);
 
 //AccelStepper myAccStepper(1, 2, 3, 4, 5);
 
